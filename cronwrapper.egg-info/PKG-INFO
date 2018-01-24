@@ -1,0 +1,19 @@
+Metadata-Version: 1.1
+Name: cronwrapper
+Version: 0.1
+Summary: A tool to wrap cron jobs and send an email if the exit status is non-zero or stderr output is detected.
+Home-page: http://example.com
+Author: Banio Carpenter
+Author-email: banio@mncarpenters.net
+License: BSD
+Description-Content-Type: UNKNOWN
+Description: A tool to wrap cron jobs and send an email if the exit status is non-zero or
+        stderr output is detected.
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.5

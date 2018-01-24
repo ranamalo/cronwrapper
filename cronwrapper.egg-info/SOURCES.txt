@@ -1,0 +1,8 @@
+README.txt
+setup.py
+cronwrapper.egg-info/PKG-INFO
+cronwrapper.egg-info/SOURCES.txt
+cronwrapper.egg-info/dependency_links.txt
+cronwrapper.egg-info/not-zip-safe
+cronwrapper.egg-info/requires.txt
+cronwrapper.egg-info/top_level.txt

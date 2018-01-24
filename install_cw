@@ -1,0 +1,55 @@
+#!/bin/bash
+
+# pretty colors
+declare -x NC='\e[0m' # No Color
+declare -x Red='\e[1;31m'
+declare -x Green='\e[1;32m'
+declare -x Yellow='\e[1;33m'
+declare -x Blue='\e[1;34m'
+declare -x Magenta='\e[1;35m'
+declare -x Cyan='\e[1;36m'
+declare -x White='\e[1;37m'
+
+# get script dir
+current_dir=$(pwd)
+script_dir=$(dirname $0)
+
+if [ $script_dir = '.' ]
+then
+        script_dir="$current_dir"
+fi
+
+if which virtualenv.py > /dev/null 2>&1
+then
+    virtual_py_alternative=$(which virtualenv.py)
+fi
+
+if virtualenv --version > /dev/null 2>&1
+then
+  virtual=virtualenv
+else
+  virtual="$virtual_py_alternative"
+fi
+
+if $virtual --python=python3 ${script_dir}
+then
+	cd ${script_dir}
+	source bin/activate
+	pip install -r requirements.txt
+else
+	printf "${Red}Warning${NC} virtualenv not installed. Quitting\n"
+	exit 1
+fi
+
+printf "${Blue}Remember you need to create a file called local_settings.py with the following:${NC}
+import os 
+
+#gmail settings (account used to send error emails)
+GMAIL_USER='xxxxxxxxxxxxxx'
+GMAIL_PASS='xxxxxxxxxxx'
+# list email addresses to receive any errors
+ERROR_RECIPIENTS=['xxxxxxxxxxxx@xxxxxxxxxxx', 'xxxxxxxxxx@xxxxxxxx']
+
+${Blue}Make sure it's not world readable:${NC}
+chmod 600 local_settings.py 
+"

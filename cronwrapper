@@ -1,0 +1,24 @@
+#!/bin/bash
+relative_py_path='cw/cronwrapper.py'
+
+# get script dir
+current_dir=$(pwd)
+script_dir=$(dirname $0)
+
+if [ $script_dir = '.' ]
+then
+        script_dir="$current_dir"
+fi
+
+# activate the python vm
+source ${script_dir}/bin/activate
+
+# execute shepherd.py
+${script_dir}/${relative_py_path} "$@" || { exit 1; }
+
+# deactivate the python vm
+deactivate
+
+# exit with a smile
+exit 0
+
