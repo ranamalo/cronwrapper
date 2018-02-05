@@ -16,6 +16,7 @@ from local_settings import *
 
 # make sure cw dir exists
 cw_dir = '/var/log/cw'
+temp_dir = '/tmp'
 if not os.path.isdir(cw_dir):
     os.makedirs(cw_dir)
 
@@ -96,7 +97,7 @@ if __name__ == '__main__':
         # if stderr is longer that 2000 character attach it to the email
         if len(stderr_string) > 2000:
             body_text = '%s failed and produced stderr on server: %s\n\nThe stderr is longer than 2000 characters and therefore has been attached. below are the first 3 lines of the stderr output:\n\n%s' % (log_name, local_hostname, '\n'.join(output_dict['stderr'][:3]))
-            temp_attachment_file = vm_root_path+'/stderr.txt'
+            temp_attachment_file = temp_dir+'/stderr.txt'
             temp_attachment_file_object = open(temp_attachment_file, 'w')
             for line in output_dict['stderr']:
                 temp_attachment_file_object.write("%s" % line)
